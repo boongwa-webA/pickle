@@ -21,7 +21,8 @@
 |                            | 필드명 | 유형   |
 | -------------------------- | ------ | ------ |
 | 아이디(User의 userID)      | userId | string |
-| 과목번호(lecture의 lecNum) | lecNum | string |
+| 과목번호(lecture의 lecNum) | lecNum | array |
+|  | tableName | string |
 
 **과목번호의 경우 배열로 저장할 것**
 
