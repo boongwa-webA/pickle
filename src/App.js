@@ -1,16 +1,18 @@
 import './App.css';
-import {fireStore} from './Firebase';
-import {useEffect} from 'react';
 import React from 'react';
+import Login from './login';
+import Main from './main';
+import {Route, Routes} from 'react-router-dom';
 
 function App() {
-  useEffect(() => {
-    console.log(fireStore)
-  });
+
 
   return (
-    <div className="App">
-      hello world
+    <div id='wrapper'>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/main' element={<Main />} />
+      </Routes>
     </div>
   );
 }
