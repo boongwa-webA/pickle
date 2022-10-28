@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# pickle
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## DB구조
 
-## Available Scripts
+### 1. User
 
-In the project directory, you can run:
+|                        | 필드명   | 유형   |
+| ---------------------- | -------- | ------ |
+| 이름                   | userName | string |
+| 아이디(중복x)          | userId   | string |
+| 비번                   | userPw   | string |
+| 학교                   | univ     | string |
+| 학과                   | major    | string |
+| 학년                   | grade    | int    |
+| 학번(중복x, 10자 제한) | stdNum   | int    |
 
-### `npm start`
+**userID, userPW는 로그인 시 사용**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. Timetable
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+|                            | 필드명 | 유형   |
+| -------------------------- | ------ | ------ |
+| 아이디(User의 userID)      | userId | string |
+| 과목번호(lecture의 lecNum) | lecNum | string |
 
-### `npm test`
+**과목번호의 경우 배열로 저장할 것**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 3. lecture
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+수강과목 목록 json파일
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| 내용            | 필드명    | 값(형식) |
+| --------------- | --------- | -------- |
+| 개설학과        | dep       | string   |
+| 학년            | grade     | int      |
+| 이수구분        | essential | string   |
+| 영역구분        | div       | string   |
+| 수강반번호      | lecNum    | string   |
+| 과목명          | lecName   | string   |
+| 학점            | hakjum    | int      |
+| 시수            | lecTime   | int      |
+| 담당교수        | prof      | string   |
+| 강의시간&강의실 | lecInfo   | string   |
+| 제한인원        | max       | int      |
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
