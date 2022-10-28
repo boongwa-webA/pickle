@@ -22,7 +22,7 @@
 | -------------------------- | ------ | ------ |
 | 아이디(User의 userID)      | userId | string |
 | 과목번호(lecture의 lecNum) | lecNum | array |
-|  | tableName | string |
+| 시간표 이름 | tableName | string |
 
 **과목번호의 경우 배열로 저장할 것**
 
