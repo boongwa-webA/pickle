@@ -1,7 +1,7 @@
 import React, { useId } from "react";
 import {fireStore} from "./Firebase"
 import { useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, Firestore, getDocs } from "firebase/firestore";
 import { doc, query, where } from "firebase/firestore";
 import { async } from "@firebase/util";
 
@@ -10,7 +10,7 @@ const Main = () => {
     const $lectureList = document.querySelector('#lectureList');
     const $main = document.querySelector('#main');
 
-    const lectureQuery = query(collection(fireStore, 'lecture'), where('dep', "==", "컴퓨터공학전공"));
+    const lectureQuery = query(collection(fireStore, 'lecture'), where('prof', "==", "김수균"));
 
     let lecName = [];
 
@@ -19,9 +19,9 @@ const Main = () => {
             const data = await getDocs(lectureQuery);
             data.forEach((doc) => {
                 console.log(doc.data().lecName);
-                //lecName.push(doc.data().lecName)
+                lecName.push(doc.data().lecName)
+                showLecture(lecName);
             })
-            //showLecture(lecName);
         }
         getUsers();
     })
@@ -29,7 +29,7 @@ const Main = () => {
     //강의 목록 보여주는 함수
     const showLecture = (name) => {
         console.log('for문 시작 전')
-        for(let i=0; i<=50; i++) {
+        for(let i=0; i<=name.length; i++) {
             console.log('들어왔땁');
             let lecItem = document.createElement('div');
             let lecName = document.createElement('p');
@@ -39,6 +39,8 @@ const Main = () => {
             lecItem.appendChild(lecName);
             $lectureList.appendChild(lecItem);
             $main.appendChild($lectureList);
+
+            console.log(name[i]);
         }
     }
     
