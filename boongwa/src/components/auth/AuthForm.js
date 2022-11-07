@@ -28,6 +28,7 @@ const StyledInput = styled.input`
     padding-bottom: 0.5rem;
     outline: none;
     height: 40px;
+    padding: 5px;
     border-radius: 5px;
     width: 100%;
     &:focus {
@@ -166,9 +167,9 @@ const AuthForm = ({ type, form, onChange, onSubmit }) => {
             </form>
             <Footer>
                 {type === 'login' ? (
-                    <Link to="/register">회원가입</Link>
+                    <Link to="/register">계정이 없으신가요? 가입하기</Link>
                 ):(
-                    <Link to="/login">로그인</Link>
+                    <Link to="/login">돌아가기</Link>
                 )}
             </Footer>
         </AuthFormBlock>

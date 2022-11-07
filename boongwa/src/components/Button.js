@@ -7,11 +7,11 @@ const StyledButton = styled.button`
     font-size: 1rem;
     font-weight: bold;
     padding: 0.25rem 1rem;
-    color: white;
+    color: green;
     outline: none;
     cursor: pointer;
 
-    background: ${palette.gray[8]};
+    background: ${palette.gray[10]};
     &:hover{
         background: ${palette.gray[6]};
     }
