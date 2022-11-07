@@ -1,0 +1,106 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #fafffb;
+}
+#main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  padding: 0 1% 0 1%;
+  margin-top: 3%;
+}
+
+#user_info {
+  flex-grow: 1;
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+#lecture_list {
+  flex-grow: 2;
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 0px #00000026;
+  margin-right: 1%;
+}
+
+#user_timetable {
+  flex-grow: 4;
+  box-shadow: 0px 0px 10px 0px #00000026;
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.info_box {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px 0px #00000026;
+  border-radius: 18px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.user_img {
+  width: 100px;
+  height: 100px;
+  background-color: black;
+  border-radius: 50%;
+}
+.user_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+.search {
+  width: 100%;
+}
+
+.search_lecture {
+  display: flex;
+}
+.search_bar {
+  flex-grow: 8;
+  margin: 1%;
+  height: 35px;
+}
+.search_btn {
+  flex-grow: 2;
+  margin: 1%;
+  height: 35px;
+}
+.search_category {
+  display: flex;
+}
+.category {
+  flex-grow: 1;
+  margin: 1%;
+}
+.lecture_list {
+  border: 1px solid black;
+}
+.lecture_details {
+  display: flex;
+}
+.details {
+  flex-grow: 1;
+  text-align: center;
+}
+.edit_button {
+  display: flex;
+  justify-content: right;
+  justify-items: right;
+}
+.edit {
+  width: 10%;
+}

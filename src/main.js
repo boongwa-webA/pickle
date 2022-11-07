@@ -3,16 +3,11 @@ import { fireStore } from "./Firebase";
 import { useEffect } from "react";
 import { collection, Firestore, getDocs } from "firebase/firestore";
 import { doc, query, where } from "firebase/firestore";
+import "./main.css";
 import { async } from "@firebase/util";
 import userEvent from "@testing-library/user-event";
 
-// function Lecture({ lectureName }) {
-//   return <span>{lectureName}</span>;
-// }
-
 const Main = () => {
-  const $main = document.querySelector("#main");
-
   const lectureQuery = query(
     collection(fireStore, "lecture"),
     where("prof", "==", "김수균")
@@ -21,14 +16,10 @@ const Main = () => {
   useEffect(() => {
     const getUsers = async () => {
       let lecNames = new Array();
-      console.log(lecNames.length);
       const data = await getDocs(lectureQuery);
-      console.log(data);
       data.forEach((doc) => {
-        console.log(doc.data());
         lecNames.push(doc.data().lecName);
       });
-      console.log(lecNames.length);
       showLecture(lecNames);
     };
     getUsers();
@@ -36,37 +27,86 @@ const Main = () => {
 
   //강의 목록 보여주는 함수
   const showLecture = (name) => {
-    const $lectureList = document.querySelector("#lectureList");
-    console.log("for문 시작 전");
+    const $lectureList = document.querySelector("#lecture_list");
     for (let i = 0; i < name.length; i++) {
-      console.log("들어왔땁");
-      console.log(name[i]);
       let lecItem = document.createElement("div");
-      console.log("div");
       let lecName = document.createElement("p");
-      console.log("p");
       let lecNameTxt = document.createTextNode(name[i]);
-      console.log("name");
 
       lecName.appendChild(lecNameTxt);
-      console.log("app lecName");
       lecItem.appendChild(lecName);
-      console.log("app lecItem");
-
       $lectureList.appendChild(lecItem);
-      console.log("app leclist");
-
-      //   $main.appendChild($lectureList);
     }
   };
 
   return (
     <div id="main">
-      mainpage
-      <div id="lectureList">
-        {/* {lecNames.map((lecture) => (
-          <Lecture name={lecture.lectureName} />
-        ))} */}
+      <div className="main info" id="user_info">
+        <div className="info_box">
+          <div className="info user_img">
+            <div className="user_img"></div>
+          </div>
+          <div className="info user_info">
+            <div className="user_name">김나연</div>
+            <div className="user_major">컴퓨터공학전공</div>
+            <div className="user_grade">4학년</div>
+            <div className="user_stdNum">학번</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="main lecture" id="lecture_list">
+        <div className="search">
+          <div className="search_lecture">
+            <input
+              type="text"
+              id="search_bar"
+              className="search_bar"
+              name="search_bar"
+              placeholder="강의명을 입력하세요"
+            ></input>
+            <button className="btn search_btn">검색</button>
+          </div>
+          <div className="search_category">
+            <button className="btn category">전공필수</button>
+            <button className="btn category">기초교양</button>
+            <button className="btn category">전공과목</button>
+          </div>
+        </div>
+        <div className="lecture_list">
+          <div className="lecture_item">
+            <div className="lecture_subject" id="lecture_subject">
+              수강과목
+            </div>
+            <div className="lecture_prof" id="lecture_prof">
+              교수명
+            </div>
+            <div className="lecture_time" id="lecture_time">
+              시간
+            </div>
+            <div className="lecture_details">
+              <div className="details" id="lecture_grade">
+                학년
+              </div>
+              <div className="details" id="lecture_category">
+                이수
+              </div>
+              <div className="details" id="lecture_hakjum">
+                학점
+              </div>
+              <div className="details" id="lecture_num">
+                수강번호
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="main timetable" id="user_timetable">
+        <div className="timetable">시간표</div>
+        <div className="edit_button">
+          <button className="btn edit">저장</button>
+          <button className="btn edit">+</button>
+        </div>
       </div>
     </div>
   );
