@@ -17,8 +17,9 @@ body {
 }
 
 #user_info {
-  flex-grow: 1;
-  margin-left: 1%;
+  /* flex-grow: 1; */
+  width: 10%;
+  /* margin-left: 1%; */
   margin-right: 1%;
 }
 
@@ -49,21 +50,30 @@ body {
   margin-right: 2%;
 }
 .user_img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
+  margin-top: 10%;
+  margin-bottom: 15%;
   background-color: black;
   border-radius: 50%;
 }
 .user_info {
   display: flex;
+  margin: 3%;
+  width: 100%;
+  margin-top: 20%;
   flex-direction: column;
   align-items: center;
   justify-items: center;
   justify-content: center;
 }
+.user {
+  margin: 5%;
+}
 
 .search {
   width: 100%;
+  height: 15%;
 }
 
 .search_lecture {
@@ -71,8 +81,10 @@ body {
 }
 .search_bar {
   flex-grow: 8;
+  width: 100%;
   margin: 1%;
-  height: 35px;
+  height: 45px;
+  padding-left: 5px;
   background: #f2f2f2;
   border-radius: 7px;
   border: 1px solid white;
@@ -80,19 +92,42 @@ body {
 .search_btn {
   flex-grow: 2;
   margin: 1%;
-  height: 35px;
+  height: 40px;
   background-color: white;
   border: 0px;
+}
+.search_btn > img {
+  width: inherit;
+  height: inherit;
 }
 .search_category {
   display: flex;
 }
+.edit,
+.category {
+  box-shadow: 0px 0px 10px 0px #00000026;
+  border: 0px;
+  background-color: #f2fff1;
+  border-radius: 18px;
+  color: #5f8946;
+}
 .category {
   flex-grow: 1;
-  margin: 1%;
+  margin: 1% 2% 3% 2%;
+  height: 30px;
 }
 .lecture_list {
-  border: 1px solid black;
+  border-style: solid;
+  border-color: #5f8946;
+  border-width: 1px 0 1px 0;
+  /* box-shadow: 0px 0px 10px 0px #00000026; */
+}
+.lecture_item {
+  box-shadow: 0px 0px 10px 0px #00000026;
+  padding: 1%;
+}
+.item {
+  margin-bottom: 3px;
 }
 .lecture_details {
   display: flex;
@@ -108,5 +143,6 @@ body {
 }
 .edit {
   width: 10%;
+  height: 20px;
   margin-right: 3px;
 }

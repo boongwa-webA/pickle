@@ -47,10 +47,10 @@ const Main = () => {
             <div className="user_img"></div>
           </div>
           <div className="info user_info">
-            <div className="user_name">김나연</div>
-            <div className="user_major">컴퓨터공학전공</div>
-            <div className="user_grade">4학년</div>
-            <div className="user_stdNum">학번</div>
+            <div className="user name">김나연</div>
+            <div className="user major">컴퓨터공학전공</div>
+            <div className="user grade">4학년</div>
+            <div className="user stdNum">학번</div>
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ const Main = () => {
             ></input>
             <button className="btn search_btn">
               <img
-                src="../pickle/img/search_btn_img.png"
+                src="https://github.com/boongwa-webA/pickle/blob/data/img/search_btn_img.png?raw=true"
                 alt="search icon"
               ></img>
             </button>
@@ -80,13 +80,13 @@ const Main = () => {
         </div>
         <div className="lecture_list">
           <div className="lecture_item">
-            <div className="lecture_subject" id="lecture_subject">
+            <div className="item subject" id="lecture_subject">
               수강과목
             </div>
-            <div className="lecture_prof" id="lecture_prof">
+            <div className="item prof" id="lecture_prof">
               교수명
             </div>
-            <div className="lecture_time" id="lecture_time">
+            <div className="item time" id="lecture_time">
               시간
             </div>
             <div className="lecture_details">
