@@ -1,0 +1,148 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #fafffb;
+}
+#main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  padding: 0 1% 0 1%;
+  margin-top: 3%;
+}
+
+#user_info {
+  /* flex-grow: 1; */
+  width: 10%;
+  /* margin-left: 1%; */
+  margin-right: 1%;
+}
+
+#lecture_list {
+  flex-grow: 2;
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px 0px #00000026;
+  margin-right: 1%;
+}
+
+#user_timetable {
+  flex-grow: 4;
+  box-shadow: 0px 0px 10px 0px #00000026;
+  border-radius: 18px;
+  padding: 10px;
+}
+
+.info_box {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px 0px #00000026;
+  border-radius: 18px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.user_img {
+  width: 80px;
+  height: 80px;
+  margin-top: 10%;
+  margin-bottom: 15%;
+  background-color: black;
+  border-radius: 50%;
+}
+.user_info {
+  display: flex;
+  margin: 3%;
+  width: 100%;
+  margin-top: 20%;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+.user {
+  margin: 5%;
+}
+
+.search {
+  width: 100%;
+  height: 15%;
+}
+
+.search_lecture {
+  display: flex;
+}
+.search_bar {
+  flex-grow: 8;
+  width: 100%;
+  margin: 1%;
+  height: 45px;
+  padding-left: 5px;
+  background: #f2f2f2;
+  border-radius: 7px;
+  border: 1px solid white;
+}
+.search_btn {
+  flex-grow: 2;
+  margin: 1%;
+  height: 40px;
+  background-color: white;
+  border: 0px;
+}
+.search_btn > img {
+  width: inherit;
+  height: inherit;
+}
+.search_category {
+  display: flex;
+}
+.edit,
+.category {
+  box-shadow: 0px 0px 10px 0px #00000026;
+  border: 0px;
+  background-color: #f2fff1;
+  border-radius: 18px;
+  color: #5f8946;
+}
+.category {
+  flex-grow: 1;
+  margin: 1% 2% 3% 2%;
+  height: 30px;
+}
+.lecture_list {
+  border-style: solid;
+  border-color: #5f8946;
+  border-width: 1px 0 1px 0;
+  /* box-shadow: 0px 0px 10px 0px #00000026; */
+}
+.lecture_item {
+  box-shadow: 0px 0px 10px 0px #00000026;
+  padding: 1%;
+}
+.item {
+  margin-bottom: 3px;
+}
+.lecture_details {
+  display: flex;
+}
+.details {
+  flex-grow: 1;
+  text-align: center;
+}
+.edit_button {
+  display: flex;
+  justify-content: right;
+  justify-items: right;
+}
+.edit {
+  width: 10%;
+  height: 20px;
+  margin-right: 3px;
+}
