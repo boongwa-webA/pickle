@@ -19,8 +19,7 @@ const Main = () => {
       const data = await getDocs(lectureQuery);
       data.forEach((doc) => {
         showLectureItem(doc.data());
-        console.log(Object.keys(doc.data()));
-        console.log(Object.keys(doc.data())[1]);
+        console.log(doc.data());
         // lecNames.push(doc.data().lecName);
       });
       // showLecture(lecNames);
@@ -42,10 +41,15 @@ const Main = () => {
     //한 강의정보 전체 감쌀 div
     let lecItem = document.createElement("div");
     lecItem.setAttribute("className", "lecture_item");
+    let lecItemCss =
+      "margin-bottom: 1%; box-shadow: 0px 0px 5px 0px #00000026; padding: 1%;";
+    lecItem.setAttribute("style", lecItemCss);
 
     //강의명 담을 div, txt넣어주고 item div에 추가
+    let lecItemsCss = "margin-bottom: 3px;";
     let lecName = document.createElement("div");
     lecName.setAttribute("className", "item subject");
+    lecName.setAttribute("style", lecItemsCss);
 
     let lecNameTxt = document.createTextNode(itemName);
     lecName.appendChild(lecNameTxt);
@@ -54,6 +58,8 @@ const Main = () => {
     //교수명 담을 div, txt넣어주고 item div에 추가
     let lecProf = document.createElement("div");
     lecProf.setAttribute("className", "item prof");
+    lecProf.setAttribute("style", lecItemsCss);
+
     let lecProfTxt = document.createTextNode(itemProf);
     lecProf.appendChild(lecProfTxt);
     lecItem.appendChild(lecProf);
@@ -61,25 +67,32 @@ const Main = () => {
     //시간 담을 div, txt넣어주고 item div에 추가
     let lecInfo = document.createElement("div");
     lecInfo.setAttribute("className", "item time");
+    lecInfo.setAttribute("style", lecItemsCss);
+
     let lecInfoTxt = document.createTextNode(itemInfo);
     lecInfo.appendChild(lecInfoTxt);
     lecItem.appendChild(lecInfo);
 
     //강의 디테일 정보 감쌀 div생성
     let lecDetails = document.createElement("div");
+    let lecDetailsCss = "display: flex;";
     lecDetails.setAttribute("className", "lecture_details");
+    lecDetails.setAttribute("style", lecDetailsCss);
 
     //학년 div txt넣고 detailsdiv추가
     let lecGrd = document.createElement("div");
+    let lecDetailCss = "flex-grow: 1; text-align: center;";
     lecGrd.setAttribute("className", "details");
+    lecGrd.setAttribute("style", lecDetailCss);
 
-    let lecGrdTxt = document.createTextNode(itemGrd);
+    let lecGrdTxt = document.createTextNode(itemGrd + "학년");
     lecGrd.appendChild(lecGrdTxt);
     lecDetails.appendChild(lecGrd);
 
     //이수 div txt넣고 detailsdiv추가
     let lecEss = document.createElement("div");
     lecEss.setAttribute("className", "details");
+    lecEss.setAttribute("style", lecDetailCss);
 
     let lecEssTxt = document.createTextNode(itemEss);
     lecEss.appendChild(lecEssTxt);
@@ -88,14 +101,16 @@ const Main = () => {
     //학점 div txt넣고 detailsdiv추가
     let lecHjum = document.createElement("div");
     lecHjum.setAttribute("className", "details");
+    lecHjum.setAttribute("style", lecDetailCss);
 
-    let lecHjumTxt = document.createTextNode(itemHjum);
+    let lecHjumTxt = document.createTextNode(itemHjum + "학점");
     lecHjum.appendChild(lecHjumTxt);
     lecDetails.appendChild(lecHjum);
 
     //수강번호 div txt넣고 detailsdiv추가
     let lecNum = document.createElement("div");
     lecNum.setAttribute("className", "details");
+    lecNum.setAttribute("style", lecDetailCss);
 
     let lecNumTxt = document.createTextNode(itemNum);
     lecNum.appendChild(lecNumTxt);

@@ -24,7 +24,7 @@ body {
 }
 
 #lecture_list {
-  flex-grow: 2;
+  flex-grow: 1;
   border-radius: 18px;
   padding: 10px;
   box-shadow: 0px 0px 10px 0px #00000026;
@@ -32,7 +32,7 @@ body {
 }
 
 #user_timetable {
-  flex-grow: 4;
+  flex-grow: 3;
   box-shadow: 0px 0px 10px 0px #00000026;
   border-radius: 18px;
   padding: 10px;
@@ -120,12 +120,13 @@ body {
   border-style: solid;
   border-color: #5f8946;
   border-width: 1px 0 1px 0;
+  overflow: auto;
   /* box-shadow: 0px 0px 10px 0px #00000026; */
 }
-.lecture_item {
+/* .lecture_item {
   box-shadow: 0px 0px 10px 0px #00000026;
   padding: 1%;
-}
+} */
 .item {
   margin-bottom: 3px;
 }
