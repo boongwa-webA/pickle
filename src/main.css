@@ -73,11 +73,16 @@ body {
   flex-grow: 8;
   margin: 1%;
   height: 35px;
+  background: #f2f2f2;
+  border-radius: 7px;
+  border: 1px solid white;
 }
 .search_btn {
   flex-grow: 2;
   margin: 1%;
   height: 35px;
+  background-color: white;
+  border: 0px;
 }
 .search_category {
   display: flex;

@@ -65,7 +65,12 @@ const Main = () => {
               name="search_bar"
               placeholder="강의명을 입력하세요"
             ></input>
-            <button className="btn search_btn">검색</button>
+            <button className="btn search_btn">
+              <img
+                src="../pickle/img/search_btn_img.png"
+                alt="search icon"
+              ></img>
+            </button>
           </div>
           <div className="search_category">
             <button className="btn category">전공필수</button>
