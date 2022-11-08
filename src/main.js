@@ -18,25 +18,92 @@ const Main = () => {
       let lecNames = new Array();
       const data = await getDocs(lectureQuery);
       data.forEach((doc) => {
-        lecNames.push(doc.data().lecName);
+        showLectureItem(doc.data());
+        console.log(Object.keys(doc.data()));
+        console.log(Object.keys(doc.data())[1]);
+        // lecNames.push(doc.data().lecName);
       });
-      showLecture(lecNames);
+      // showLecture(lecNames);
     };
     getUsers();
   }, []);
 
-  //강의 목록 보여주는 함수
-  const showLecture = (name) => {
-    const $lectureList = document.querySelector("#lecture_list");
-    for (let i = 0; i < name.length; i++) {
-      let lecItem = document.createElement("div");
-      let lecName = document.createElement("p");
-      let lecNameTxt = document.createTextNode(name[i]);
+  // 강의 목록 보여주는 함수
+  const showLectureItem = (item) => {
+    let itemName = item.lecName;
+    let itemProf = item.prof;
+    let itemInfo = item.lecInfo;
+    let itemGrd = item.grade;
+    let itemEss = item.essential;
+    let itemHjum = item.hakjum;
+    let itemNum = item.lecNum;
 
-      lecName.appendChild(lecNameTxt);
-      lecItem.appendChild(lecName);
-      $lectureList.appendChild(lecItem);
-    }
+    const $lectureList = document.querySelector(".lecture_list");
+    //한 강의정보 전체 감쌀 div
+    let lecItem = document.createElement("div");
+    lecItem.setAttribute("className", "lecture_item");
+
+    //강의명 담을 div, txt넣어주고 item div에 추가
+    let lecName = document.createElement("div");
+    lecName.setAttribute("className", "item subject");
+
+    let lecNameTxt = document.createTextNode(itemName);
+    lecName.appendChild(lecNameTxt);
+    lecItem.appendChild(lecName);
+
+    //교수명 담을 div, txt넣어주고 item div에 추가
+    let lecProf = document.createElement("div");
+    lecProf.setAttribute("className", "item prof");
+    let lecProfTxt = document.createTextNode(itemProf);
+    lecProf.appendChild(lecProfTxt);
+    lecItem.appendChild(lecProf);
+
+    //시간 담을 div, txt넣어주고 item div에 추가
+    let lecInfo = document.createElement("div");
+    lecInfo.setAttribute("className", "item time");
+    let lecInfoTxt = document.createTextNode(itemInfo);
+    lecInfo.appendChild(lecInfoTxt);
+    lecItem.appendChild(lecInfo);
+
+    //강의 디테일 정보 감쌀 div생성
+    let lecDetails = document.createElement("div");
+    lecDetails.setAttribute("className", "lecture_details");
+
+    //학년 div txt넣고 detailsdiv추가
+    let lecGrd = document.createElement("div");
+    lecGrd.setAttribute("className", "details");
+
+    let lecGrdTxt = document.createTextNode(itemGrd);
+    lecGrd.appendChild(lecGrdTxt);
+    lecDetails.appendChild(lecGrd);
+
+    //이수 div txt넣고 detailsdiv추가
+    let lecEss = document.createElement("div");
+    lecEss.setAttribute("className", "details");
+
+    let lecEssTxt = document.createTextNode(itemEss);
+    lecEss.appendChild(lecEssTxt);
+    lecDetails.appendChild(lecEss);
+
+    //학점 div txt넣고 detailsdiv추가
+    let lecHjum = document.createElement("div");
+    lecHjum.setAttribute("className", "details");
+
+    let lecHjumTxt = document.createTextNode(itemHjum);
+    lecHjum.appendChild(lecHjumTxt);
+    lecDetails.appendChild(lecHjum);
+
+    //수강번호 div txt넣고 detailsdiv추가
+    let lecNum = document.createElement("div");
+    lecNum.setAttribute("className", "details");
+
+    let lecNumTxt = document.createTextNode(itemNum);
+    lecNum.appendChild(lecNumTxt);
+    lecDetails.appendChild(lecNum);
+
+    lecItem.appendChild(lecDetails);
+
+    $lectureList.appendChild(lecItem);
   };
 
   return (
@@ -79,7 +146,7 @@ const Main = () => {
           </div>
         </div>
         <div className="lecture_list">
-          <div className="lecture_item">
+          {/* <div className="lecture_item">
             <div className="item subject" id="lecture_subject">
               수강과목
             </div>
@@ -103,7 +170,7 @@ const Main = () => {
                 수강번호
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="main timetable" id="user_timetable">
