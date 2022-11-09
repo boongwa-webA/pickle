@@ -16,7 +16,6 @@ const Main = () => {
 
   useEffect(() => {
     const getUsers = async () => {
-      let lecNames = new Array();
       const data = await getDocs(lectureQuery);
       data.forEach((doc) => {
         showLectureItem(doc.data());
@@ -25,6 +24,22 @@ const Main = () => {
     };
     getUsers();
   }, []);
+
+  const getSubject = async () => {
+    const sub = await getDocs(dkdk);
+  };
+
+  //카테고리 클릭
+  const cateegoryClick = (categoryId) => {
+    if (categoryId === "category_1") {
+      console.log(categoryId + "전공");
+      getSubject;
+    } else if (categoryId === "category_2") {
+      console.log(categoryId + "교양");
+    } else if (categoryId === "category_3") {
+      console.log(categoryId + "전필");
+    }
+  };
 
   // 강의 목록 보여주는 함수
   const showLectureItem = (item) => {
@@ -106,19 +121,26 @@ const Main = () => {
     $lectureList.appendChild(lecItem);
 
     //팝업버튼 만들고 추가
+    let popBtnBox = document.createElement("div");
+    popBtnBox.setAttribute("class", "button_box");
+
     let popBtn = document.createElement("button");
     let popBtnTxt = document.createTextNode("추가");
     popBtn.appendChild(popBtnTxt);
     popBtn.setAttribute("class", "pop_button");
-    lecItem.appendChild(popBtn);
+    popBtnBox.appendChild(popBtn);
+    lecItem.appendChild(popBtnBox);
 
     lecItem.addEventListener("mouseover", (e) => {
       showBtn(popBtn, 1);
+      popBtn.addEventListener("mousedown", console.log("isclicked"));
     });
     lecItem.addEventListener("mouseleave", (e) => {
       showBtn(popBtn, 0);
     });
   };
+
+  let isclicked = false;
 
   const showBtn = (btn, on) => {
     if (on == 1) {
@@ -162,9 +184,27 @@ const Main = () => {
             </button>
           </div>
           <div className="search_category">
-            <button className="btn category">전공필수</button>
-            <button className="btn category">기초교양</button>
-            <button className="btn category">전공과목</button>
+            <button
+              className="btn category"
+              id="category_1"
+              onClick={() => cateegoryClick("category_1")}
+            >
+              전공필수
+            </button>
+            <button
+              className="btn category"
+              id="category_2"
+              onClick={() => cateegoryClick("category_2")}
+            >
+              기초교양
+            </button>
+            <button
+              className="btn category"
+              id="category_3"
+              onClick={() => cateegoryClick("category_3")}
+            >
+              전공과목
+            </button>
           </div>
         </div>
         <div className="lecture_list"></div>
