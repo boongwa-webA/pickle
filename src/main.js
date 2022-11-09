@@ -8,23 +8,11 @@ import "./main.css";
 import { async } from "@firebase/util";
 import userEvent from "@testing-library/user-event";
 
-const Add = styled.div`
-  background-color: ${(props) => props.color || "white"};
-  ${(props) =>
-    props.change &&
-    css`
-      background-color: grey;
-    `}
-`;
-
 const Main = () => {
   const lectureQuery = query(
     collection(fireStore, "lecture"),
     where("prof", "==", "김수균")
   );
-
-  const [isHovering, setIsHovering] = useState(0);
-  const [color, setColor] = useState("white");
 
   useEffect(() => {
     const getUsers = async () => {
@@ -116,21 +104,32 @@ const Main = () => {
     lecItem.appendChild(lecDetails);
 
     $lectureList.appendChild(lecItem);
+
+    //팝업버튼 만들고 추가
+    let popBtn = document.createElement("button");
+    let popBtnTxt = document.createTextNode("추가");
+    popBtn.appendChild(popBtnTxt);
+    popBtn.setAttribute("class", "pop_button");
+    lecItem.appendChild(popBtn);
+
+    lecItem.addEventListener("mouseover", (e) => {
+      showBtn(popBtn, 1);
+    });
+    lecItem.addEventListener("mouseleave", (e) => {
+      showBtn(popBtn, 0);
+    });
   };
 
-  const onMouseOver = () => {
-    setIsHovering(1);
-    setColor("grey");
-  };
-  const onMouseLeave = () => {
-    setIsHovering(0);
+  const showBtn = (btn, on) => {
+    if (on == 1) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
   };
 
   return (
     <div id="main">
-      <div class="test" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-        {isHovering === 1 && <button>추가</button>} 테스트입니다~~
-      </div>
       <div className="main info" id="user_info">
         <div className="info_box">
           <div className="info user_img">
