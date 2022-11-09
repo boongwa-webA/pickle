@@ -146,7 +146,7 @@ const Main = () => {
           </div>
         </div>
         <div className="lecture_list">
-          {/* <div className="lecture_item">
+          {/*<div className="lecture_item">
             <div className="item subject" id="lecture_subject">
               수강과목
             </div>
@@ -170,14 +170,125 @@ const Main = () => {
                 수강번호
               </div>
             </div>
-          </div> */}
+          </div>*/}
         </div>
       </div>
       <div className="main timetable" id="user_timetable">
-        <div className="timetable">시간표</div>
+        <div className="timetablename"><p>시간표</p></div>
         <div className="edit_button">
           <button className="btn edit">저장</button>
           <button className="btn edit">+</button>
+        </div>
+        <div className="timetable">
+        <table
+            width="100%"
+            height="200"
+            cellSpacing="3"
+            >
+            <tbody>
+                <tr className="trHeight" align="center" bgcolor="white">
+                    <th></th>
+                    <td>월</td>
+                    <td>화</td>
+                    <td>수</td>
+                    <td>목</td>
+                    <td>금</td>
+                    <td>토</td>
+                    <td>일</td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>9</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>10</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>11</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>12</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>13</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>14</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>15</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>16</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr align="center" bgcolor="white">
+                    <th>17</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
         </div>
       </div>
     </div>
