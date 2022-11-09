@@ -3,15 +3,28 @@ import { fireStore } from "./Firebase";
 import { useEffect } from "react";
 import { collection, Firestore, getDocs } from "firebase/firestore";
 import { doc, query, where } from "firebase/firestore";
+import styled, { css } from "styled-components";
 import "./main.css";
 import { async } from "@firebase/util";
 import userEvent from "@testing-library/user-event";
+
+const Add = styled.div`
+  background-color: ${(props) => props.color || "white"};
+  ${(props) =>
+    props.change &&
+    css`
+      background-color: grey;
+    `}
+`;
 
 const Main = () => {
   const lectureQuery = query(
     collection(fireStore, "lecture"),
     where("prof", "==", "김수균")
   );
+
+  const [isHovering, setIsHovering] = useState(0);
+  const [color, setColor] = useState("white");
 
   useEffect(() => {
     const getUsers = async () => {
@@ -20,9 +33,7 @@ const Main = () => {
       data.forEach((doc) => {
         showLectureItem(doc.data());
         console.log(doc.data());
-        // lecNames.push(doc.data().lecName);
       });
-      // showLecture(lecNames);
     };
     getUsers();
   }, []);
@@ -40,16 +51,11 @@ const Main = () => {
     const $lectureList = document.querySelector(".lecture_list");
     //한 강의정보 전체 감쌀 div
     let lecItem = document.createElement("div");
-    lecItem.setAttribute("className", "lecture_item");
-    let lecItemCss =
-      "margin-bottom: 1%; box-shadow: 0px 0px 5px 0px #00000026; padding: 1%;";
-    lecItem.setAttribute("style", lecItemCss);
+    lecItem.setAttribute("class", "lecture_item");
 
     //강의명 담을 div, txt넣어주고 item div에 추가
-    let lecItemsCss = "margin-bottom: 3px;";
     let lecName = document.createElement("div");
-    lecName.setAttribute("className", "item subject");
-    lecName.setAttribute("style", lecItemsCss);
+    lecName.setAttribute("class", "item subject");
 
     let lecNameTxt = document.createTextNode(itemName);
     lecName.appendChild(lecNameTxt);
@@ -58,7 +64,6 @@ const Main = () => {
     //교수명 담을 div, txt넣어주고 item div에 추가
     let lecProf = document.createElement("div");
     lecProf.setAttribute("className", "item prof");
-    lecProf.setAttribute("style", lecItemsCss);
 
     let lecProfTxt = document.createTextNode(itemProf);
     lecProf.appendChild(lecProfTxt);
@@ -67,7 +72,6 @@ const Main = () => {
     //시간 담을 div, txt넣어주고 item div에 추가
     let lecInfo = document.createElement("div");
     lecInfo.setAttribute("className", "item time");
-    lecInfo.setAttribute("style", lecItemsCss);
 
     let lecInfoTxt = document.createTextNode(itemInfo);
     lecInfo.appendChild(lecInfoTxt);
@@ -75,15 +79,11 @@ const Main = () => {
 
     //강의 디테일 정보 감쌀 div생성
     let lecDetails = document.createElement("div");
-    let lecDetailsCss = "display: flex;";
-    lecDetails.setAttribute("className", "lecture_details");
-    lecDetails.setAttribute("style", lecDetailsCss);
+    lecDetails.setAttribute("class", "lecture_details");
 
     //학년 div txt넣고 detailsdiv추가
     let lecGrd = document.createElement("div");
-    let lecDetailCss = "flex-grow: 1; text-align: center;";
     lecGrd.setAttribute("className", "details");
-    lecGrd.setAttribute("style", lecDetailCss);
 
     let lecGrdTxt = document.createTextNode(itemGrd + "학년");
     lecGrd.appendChild(lecGrdTxt);
@@ -92,7 +92,6 @@ const Main = () => {
     //이수 div txt넣고 detailsdiv추가
     let lecEss = document.createElement("div");
     lecEss.setAttribute("className", "details");
-    lecEss.setAttribute("style", lecDetailCss);
 
     let lecEssTxt = document.createTextNode(itemEss);
     lecEss.appendChild(lecEssTxt);
@@ -101,7 +100,6 @@ const Main = () => {
     //학점 div txt넣고 detailsdiv추가
     let lecHjum = document.createElement("div");
     lecHjum.setAttribute("className", "details");
-    lecHjum.setAttribute("style", lecDetailCss);
 
     let lecHjumTxt = document.createTextNode(itemHjum + "학점");
     lecHjum.appendChild(lecHjumTxt);
@@ -110,7 +108,6 @@ const Main = () => {
     //수강번호 div txt넣고 detailsdiv추가
     let lecNum = document.createElement("div");
     lecNum.setAttribute("className", "details");
-    lecNum.setAttribute("style", lecDetailCss);
 
     let lecNumTxt = document.createTextNode(itemNum);
     lecNum.appendChild(lecNumTxt);
@@ -121,8 +118,19 @@ const Main = () => {
     $lectureList.appendChild(lecItem);
   };
 
+  const onMouseOver = () => {
+    setIsHovering(1);
+    setColor("grey");
+  };
+  const onMouseLeave = () => {
+    setIsHovering(0);
+  };
+
   return (
     <div id="main">
+      <div class="test" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+        {isHovering === 1 && <button>추가</button>} 테스트입니다~~
+      </div>
       <div className="main info" id="user_info">
         <div className="info_box">
           <div className="info user_img">
@@ -160,33 +168,7 @@ const Main = () => {
             <button className="btn category">전공과목</button>
           </div>
         </div>
-        <div className="lecture_list">
-          {/* <div className="lecture_item">
-            <div className="item subject" id="lecture_subject">
-              수강과목
-            </div>
-            <div className="item prof" id="lecture_prof">
-              교수명
-            </div>
-            <div className="item time" id="lecture_time">
-              시간
-            </div>
-            <div className="lecture_details">
-              <div className="details" id="lecture_grade">
-                학년
-              </div>
-              <div className="details" id="lecture_category">
-                이수
-              </div>
-              <div className="details" id="lecture_hakjum">
-                학점
-              </div>
-              <div className="details" id="lecture_num">
-                수강번호
-              </div>
-            </div>
-          </div> */}
-        </div>
+        <div className="lecture_list"></div>
       </div>
       <div className="main timetable" id="user_timetable">
         <div className="timetable">시간표</div>
