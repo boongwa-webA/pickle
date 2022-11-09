@@ -6,6 +6,11 @@
 body {
   background-color: #fafffb;
 }
+.test {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
 #main {
   width: 100vw;
   height: 100vh;
@@ -24,7 +29,7 @@ body {
 }
 
 #lecture_list {
-  flex-grow: 2;
+  flex-grow: 1;
   border-radius: 18px;
   padding: 10px;
   box-shadow: 0px 0px 10px 0px #00000026;
@@ -32,7 +37,7 @@ body {
 }
 
 #user_timetable {
-  flex-grow: 4;
+  flex-grow: 3;
   box-shadow: 0px 0px 10px 0px #00000026;
   border-radius: 18px;
   padding: 10px;
@@ -120,11 +125,15 @@ body {
   border-style: solid;
   border-color: #5f8946;
   border-width: 1px 0 1px 0;
+  overflow: auto;
   /* box-shadow: 0px 0px 10px 0px #00000026; */
 }
 .lecture_item {
-  box-shadow: 0px 0px 10px 0px #00000026;
+  box-shadow: 0px 0px 5px 0px #00000026;
   padding: 1%;
+}
+.lecture_item:hover {
+  background-color: #f2f2f2;
 }
 .item {
   margin-bottom: 3px;
@@ -145,4 +154,12 @@ body {
   width: 10%;
   height: 20px;
   margin-right: 3px;
+}
+
+.test:hover {
+  background-color: blue;
+}
+
+.pop_button {
+  display: none;
 }

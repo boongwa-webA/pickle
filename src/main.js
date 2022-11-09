@@ -3,6 +3,7 @@ import { fireStore } from "./Firebase";
 import { useEffect } from "react";
 import { collection, Firestore, getDocs } from "firebase/firestore";
 import { doc, query, where } from "firebase/firestore";
+import styled, { css } from "styled-components";
 import "./main.css";
 import { async } from "@firebase/util";
 import userEvent from "@testing-library/user-event";
@@ -19,11 +20,8 @@ const Main = () => {
       const data = await getDocs(lectureQuery);
       data.forEach((doc) => {
         showLectureItem(doc.data());
-        console.log(Object.keys(doc.data()));
-        console.log(Object.keys(doc.data())[1]);
-        // lecNames.push(doc.data().lecName);
+        console.log(doc.data());
       });
-      // showLecture(lecNames);
     };
     getUsers();
   }, []);
@@ -41,11 +39,11 @@ const Main = () => {
     const $lectureList = document.querySelector(".lecture_list");
     //한 강의정보 전체 감쌀 div
     let lecItem = document.createElement("div");
-    lecItem.setAttribute("className", "lecture_item");
+    lecItem.setAttribute("class", "lecture_item");
 
     //강의명 담을 div, txt넣어주고 item div에 추가
     let lecName = document.createElement("div");
-    lecName.setAttribute("className", "item subject");
+    lecName.setAttribute("class", "item subject");
 
     let lecNameTxt = document.createTextNode(itemName);
     lecName.appendChild(lecNameTxt);
@@ -54,6 +52,7 @@ const Main = () => {
     //교수명 담을 div, txt넣어주고 item div에 추가
     let lecProf = document.createElement("div");
     lecProf.setAttribute("className", "item prof");
+
     let lecProfTxt = document.createTextNode(itemProf);
     lecProf.appendChild(lecProfTxt);
     lecItem.appendChild(lecProf);
@@ -61,19 +60,20 @@ const Main = () => {
     //시간 담을 div, txt넣어주고 item div에 추가
     let lecInfo = document.createElement("div");
     lecInfo.setAttribute("className", "item time");
+
     let lecInfoTxt = document.createTextNode(itemInfo);
     lecInfo.appendChild(lecInfoTxt);
     lecItem.appendChild(lecInfo);
 
     //강의 디테일 정보 감쌀 div생성
     let lecDetails = document.createElement("div");
-    lecDetails.setAttribute("className", "lecture_details");
+    lecDetails.setAttribute("class", "lecture_details");
 
     //학년 div txt넣고 detailsdiv추가
     let lecGrd = document.createElement("div");
     lecGrd.setAttribute("className", "details");
 
-    let lecGrdTxt = document.createTextNode(itemGrd);
+    let lecGrdTxt = document.createTextNode(itemGrd + "학년");
     lecGrd.appendChild(lecGrdTxt);
     lecDetails.appendChild(lecGrd);
 
@@ -89,7 +89,7 @@ const Main = () => {
     let lecHjum = document.createElement("div");
     lecHjum.setAttribute("className", "details");
 
-    let lecHjumTxt = document.createTextNode(itemHjum);
+    let lecHjumTxt = document.createTextNode(itemHjum + "학점");
     lecHjum.appendChild(lecHjumTxt);
     lecDetails.appendChild(lecHjum);
 
@@ -104,6 +104,28 @@ const Main = () => {
     lecItem.appendChild(lecDetails);
 
     $lectureList.appendChild(lecItem);
+
+    //팝업버튼 만들고 추가
+    let popBtn = document.createElement("button");
+    let popBtnTxt = document.createTextNode("추가");
+    popBtn.appendChild(popBtnTxt);
+    popBtn.setAttribute("class", "pop_button");
+    lecItem.appendChild(popBtn);
+
+    lecItem.addEventListener("mouseover", (e) => {
+      showBtn(popBtn, 1);
+    });
+    lecItem.addEventListener("mouseleave", (e) => {
+      showBtn(popBtn, 0);
+    });
+  };
+
+  const showBtn = (btn, on) => {
+    if (on == 1) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
   };
 
   return (
@@ -145,33 +167,7 @@ const Main = () => {
             <button className="btn category">전공과목</button>
           </div>
         </div>
-        <div className="lecture_list">
-          {/* <div className="lecture_item">
-            <div className="item subject" id="lecture_subject">
-              수강과목
-            </div>
-            <div className="item prof" id="lecture_prof">
-              교수명
-            </div>
-            <div className="item time" id="lecture_time">
-              시간
-            </div>
-            <div className="lecture_details">
-              <div className="details" id="lecture_grade">
-                학년
-              </div>
-              <div className="details" id="lecture_category">
-                이수
-              </div>
-              <div className="details" id="lecture_hakjum">
-                학점
-              </div>
-              <div className="details" id="lecture_num">
-                수강번호
-              </div>
-            </div>
-          </div> */}
-        </div>
+        <div className="lecture_list"></div>
       </div>
       <div className="main timetable" id="user_timetable">
         <div className="timetable">시간표</div>
