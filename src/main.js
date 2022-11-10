@@ -27,7 +27,6 @@ const Main = () => {
     };
     getUsers();
   }, []);
-  //
   // 강의 목록 보여주는 함수
   const showLectureItem = (item) => {
     let itemName = item.lecName;

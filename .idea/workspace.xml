@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e3eca5c-cec4-4ec2-bf8a-b6e6d69070f7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +68,9 @@
       <workItem from="1667783768187" duration="4591000" />
       <workItem from="1667797180489" duration="262000" />
       <workItem from="1668007397195" duration="55000" />
-      <workItem from="1668007481659" duration="85000" />
+      <workItem from="1668007481659" duration="529000" />
+      <workItem from="1668049810041" duration="1636000" />
+      <workItem from="1668052193703" duration="649000" />
     </task>
     <servers />
   </component>
