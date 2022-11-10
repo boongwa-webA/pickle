@@ -50,6 +50,27 @@ const Main = () => {
     getLectureList();
   }, []);
 
+  const getEssSubject = async () => {
+    const essData = await getDocs(essLectureQuery);
+    essData.forEach((doc) => {
+      showLectureItem(doc.data());
+      console.log(doc.data());
+    });
+  };
+
+  //카테고리 클릭
+  const cateegoryClick = (categoryId) => {
+    if (categoryId === "category_1") {
+      console.log(categoryId + "전공");
+      getEssSubject();
+      console.log("함수 실행 잘 됨?");
+    } else if (categoryId === "category_2") {
+      console.log(categoryId + "교양");
+    } else if (categoryId === "category_3") {
+      console.log(categoryId + "전필");
+    }
+  };
+
   // 강의 목록 보여주는 함수
   const showLectureItem = (item) => {
     let itemName = item.lecName;
