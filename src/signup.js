@@ -1,7 +1,12 @@
 import React from "react";
-import { firebaseAuth, createUserWithEmailAndPassword } from "./Firebase";
+import {
+  firebaseAuth,
+  createUserWithEmailAndPassword,
+  fireStore,
+} from "./Firebase";
 import { useState } from "react";
 import { async } from "@firebase/util";
+import { addDoc, collection, setDoc, doc } from "firebase/firestore";
 
 const SignUp = () => {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -29,7 +34,9 @@ const SignUp = () => {
         registerPassword
       );
       console.log(createdUser.user.uid);
+      const uid = createdUser.user.uid;
       //user테이블에 사용자 정보 전송.(uid포함)
+      createUser(uid);
 
       //   setRegisterEmail("");
       //   setRegisterPassword("");
@@ -38,6 +45,7 @@ const SignUp = () => {
       switch (err.code) {
         case "auth/weak-password":
           setErrorMsg("비밀번호는 6자리 이상이어야 합니다");
+          alert(errorMsg);
           break;
         case "auth/invalid-email":
           setErrorMsg("잘못된 이메일 주소입니다");
@@ -47,6 +55,34 @@ const SignUp = () => {
           break;
       }
     }
+  };
+
+  const createUser = async (uid) => {
+    //사용할지안할지 모르지만 일단 적어둠
+    // const [newUid, setUid] = useState("");
+
+    console.log("정보저장하자");
+    const newName = document.getElementById("userName").value;
+    console.log(newName);
+    const newEmail = document.getElementById("userEmail").value;
+    const newUniv = document.getElementById("userUniv").value;
+    const newMajor = document.getElementById("userMajor").value;
+    const newGrade = document.getElementById("userGrade").value;
+    const newNum = document.getElementById("userNum").value;
+    const newUid = uid;
+
+    const userCollectionRef = collection(fireStore, "User");
+    // const userCollectionRef = collection(fireStore, "User", newUid);
+
+    await setDoc(doc(fireStore, "User", newUid), {
+      grade: newGrade,
+      major: newMajor,
+      stdNum: newNum,
+      uid: newUid,
+      univ: newUniv,
+      userEmail: newEmail,
+      userName: newName,
+    });
   };
   return (
     <div>

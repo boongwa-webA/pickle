@@ -8,9 +8,9 @@ const Login = () => {
       <div id="login">
         <input
           type="text"
-          id="userID"
-          name="userID"
-          placeholder="아이디"
+          id="userEmail"
+          name="userEmail"
+          placeholder="이메일"
         ></input>
         <input
           type="password"
