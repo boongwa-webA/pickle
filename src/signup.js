@@ -7,6 +7,8 @@ import {
 import { useState } from "react";
 import { async } from "@firebase/util";
 import { addDoc, collection, setDoc, doc } from "firebase/firestore";
+import { Link, Route } from "react-router-dom";
+import Login from "./login";
 
 const SignUp = () => {
   const [registerEmail, setRegisterEmail] = useState("");
@@ -86,6 +88,9 @@ const SignUp = () => {
   };
   return (
     <div>
+      {/* <Route>
+        <Route path="/login" element={<Login />} />
+      </Route> */}
       회원가입 화면
       <div id="signupInfo">
         <input
@@ -143,6 +148,9 @@ const SignUp = () => {
         <button id="signUp" onClick={() => register()}>
           회원가입
         </button>
+        <Link to="/">
+          <button>로그인하러가기</button>
+        </Link>
       </div>
     </div>
   );
