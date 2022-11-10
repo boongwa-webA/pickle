@@ -1,17 +1,17 @@
-import './App.css';
-import React from 'react';
-import Login from './login';
-import Main from './main';
-import {Route, Routes} from 'react-router-dom';
+import "./App.css";
+import React from "react";
+import Login from "./login";
+import Main from "./main";
+import SignUp from "./signup";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
-
-
   return (
-    <div id='wrapper'>
+    <div id="wrapper">
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/main' element={<Main />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/main" element={<Main />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </div>
   );
