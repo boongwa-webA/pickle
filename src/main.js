@@ -8,6 +8,15 @@ import "./main.css";
 import { async } from "@firebase/util";
 import userEvent from "@testing-library/user-event";
 
+function Modal(){
+    return(
+        <div className="modal">
+            <h3>{}</h3>
+            <p>{}</p>
+        </div>
+    )
+}
+//
 const Main = () => {
   const lectureQuery = query(
     collection(fireStore, "lecture"),
@@ -22,7 +31,13 @@ const Main = () => {
   );
 
   //기초교양 과목 쿼리
+    const genLectureQuery = query(
+        collection(fireStore, "lecture"),
+        where("essential", "==", "기초역량교양"),
+        where("dep", "==", "제주대학교 교양")
+    )
   //전공과목 탐색 쿼리
+
 
   useEffect(() => {
     const getLectureList = async () => {
@@ -34,27 +49,6 @@ const Main = () => {
     };
     getLectureList();
   }, []);
-  
-  const getEssSubject = async () => {
-    const essData = await getDocs(essLectureQuery);
-    essData.forEach((doc) => {
-      showLectureItem(doc.data());
-      console.log(doc.data());
-    });
-  };
-
-  //카테고리 클릭
-  const cateegoryClick = (categoryId) => {
-    if (categoryId === "category_1") {
-      console.log(categoryId + "전공");
-      getEssSubject();
-      console.log("함수 실행 잘 됨?");
-    } else if (categoryId === "category_2") {
-      console.log(categoryId + "교양");
-    } else if (categoryId === "category_3") {
-      console.log(categoryId + "전필");
-    }
-  };
 
   // 강의 목록 보여주는 함수
   const showLectureItem = (item) => {
@@ -202,21 +196,21 @@ const Main = () => {
             <button
               className="btn category"
               id="category_1"
-              onClick={() => cateegoryClick("category_1")}
+              onClick={() => categoryClick("category_1")}
             >
               전공필수
             </button>
             <button
               className="btn category"
               id="category_2"
-              onClick={() => cateegoryClick("category_2")}
+              onClick={() => categoryClick("category_2")}
             >
               기초교양
             </button>
             <button
               className="btn category"
               id="category_3"
-              onClick={() => cateegoryClick("category_3")}
+              onClick={() => categoryClick("category_3")}
             >
               전공과목
             </button>
@@ -227,10 +221,9 @@ const Main = () => {
 
           }
         </div>
-
       </div>
       <div className="main timetable" id="user_timetable">
-        <div className="timetablename"><p>시간표</p></div>
+        <div className="timetablename"></div>
         <div className="edit_button">
           <button className="btn edit">저장</button>
           <button className="btn edit">+</button>
@@ -244,103 +237,103 @@ const Main = () => {
             <tbody>
                 <tr className="trHeight" align="center" bgcolor="white">
                     <th></th>
-                    <td>월</td>
-                    <td>화</td>
-                    <td>수</td>
-                    <td>목</td>
-                    <td>금</td>
-                    <td>토</td>
-                    <td>일</td>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                    <th>일</th>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>9</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon1"><Modal></Modal></td>
+                    <td className="Tue1"><Modal></Modal></td>
+                    <td className="Wed1"><Modal></Modal></td>
+                    <td className="Thu1"><Modal></Modal></td>
+                    <td className="Fri1"><Modal></Modal></td>
+                    <td className="Sat1"><Modal></Modal></td>
+                    <td className="Sun1"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>10</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon2"><Modal></Modal></td>
+                    <td className="Tue2"><Modal></Modal></td>
+                    <td className="Wed2"><Modal></Modal></td>
+                    <td className="Thu2"><Modal></Modal></td>
+                    <td className="Fri2"><Modal></Modal></td>
+                    <td className="Sat2"><Modal></Modal></td>
+                    <td className="Sun2"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>11</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon3"><Modal></Modal></td>
+                    <td className="Tue3"><Modal></Modal></td>
+                    <td className="Wed3"><Modal></Modal></td>
+                    <td className="Thu3"><Modal></Modal></td>
+                    <td className="Fri3"><Modal></Modal></td>
+                    <td className="Sat3"><Modal></Modal></td>
+                    <td className="Sun3"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>12</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon4"><Modal></Modal></td>
+                    <td className="Tue4"><Modal></Modal></td>
+                    <td className="Wed4"><Modal></Modal></td>
+                    <td className="Thu4"><Modal></Modal></td>
+                    <td className="Fri4"><Modal></Modal></td>
+                    <td className="Sat4"><Modal></Modal></td>
+                    <td className="Sun4"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>13</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon5"><Modal></Modal></td>
+                    <td className="Tue5"><Modal></Modal></td>
+                    <td className="Wed5"><Modal></Modal></td>
+                    <td className="Thu5"><Modal></Modal></td>
+                    <td className="Fri5"><Modal></Modal></td>
+                    <td className="Sat5"><Modal></Modal></td>
+                    <td className="Sun5"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>14</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon6"><Modal></Modal></td>
+                    <td className="Tue6"><Modal></Modal></td>
+                    <td className="Wed6"><Modal></Modal></td>
+                    <td className="Thu6"><Modal></Modal></td>
+                    <td className="Fri6"><Modal></Modal></td>
+                    <td className="Sat6"><Modal></Modal></td>
+                    <td className="Sun6"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>15</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon7"><Modal></Modal></td>
+                    <td className="Tue7"><Modal></Modal></td>
+                    <td className="Wed7"><Modal></Modal></td>
+                    <td className="Thu7"><Modal></Modal></td>
+                    <td className="Fri7"><Modal></Modal></td>
+                    <td className="Sat7"><Modal></Modal></td>
+                    <td className="Sun7"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>16</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon8"><Modal></Modal></td>
+                    <td className="Tue8"><Modal></Modal></td>
+                    <td className="Wed8"><Modal></Modal></td>
+                    <td className="Thu8"><Modal></Modal></td>
+                    <td className="Fri8"><Modal></Modal></td>
+                    <td className="Sat8"><Modal></Modal></td>
+                    <td className="Sun8"><Modal></Modal></td>
                 </tr>
                 <tr align="center" bgcolor="white">
                     <th>17</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td className="Mon9"><Modal></Modal></td>
+                    <td className="Tue9"><Modal></Modal></td>
+                    <td className="Wed9"><Modal></Modal></td>
+                    <td className="Thu9"><Modal></Modal></td>
+                    <td className="Fri9"><Modal></Modal></td>
+                    <td className="Sat9"><Modal></Modal></td>
+                    <td className="Sun9"><Modal></Modal></td>
                 </tr>
             </tbody>
         </table>
