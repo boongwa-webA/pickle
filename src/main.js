@@ -1,7 +1,7 @@
 import React, { useCallback, useId, useRef, useState } from "react";
 import { fireStore } from "./Firebase";
 import { useEffect } from "react";
-import { collection, Firestore, getDocs } from "firebase/firestore";
+import { collection, Firestore, getDocs, setDoc } from "firebase/firestore";
 import { doc, query, where } from "firebase/firestore";
 import styled, { css } from "styled-components";
 import "./main.css";
@@ -11,6 +11,10 @@ import { getAuth } from "firebase/auth";
 import { tab } from "@testing-library/user-event/dist/tab";
 
 const Main = () => {
+  let saveSubject = [];
+  let saveTime = [];
+  let saveDay = [];
+
   const lectureQuery = query(
     collection(fireStore, "lecture"),
     where("prof", "==", "김수균")
@@ -25,12 +29,11 @@ const Main = () => {
 
   //기초교양 과목 쿼리
   //전공과목 탐색 쿼리
-
   let uid;
 
   useEffect(() => {
-    //    const auth = getAuth();
-    //    uid = auth.currentUser.uid;
+    const auth = getAuth();
+    uid = auth.currentUser.uid;
     //    console.log(auth.currentUser.uid);
     const getLectureList = async () => {
       const data = await getDocs(lectureQuery);
@@ -67,7 +70,8 @@ const Main = () => {
     }
   };
 
-  const drawTable = (id) => {
+  //시간표 추가
+  const drawTable = (id, subject) => {
     let chop = id.split(" ");
     let cTime = [];
     let cDay = [];
@@ -91,11 +95,28 @@ const Main = () => {
     for (let i = 0; i < cDay.length; i++) {
       console.log(cDay[i] + cTime[i]);
       let dayDiv = document.getElementById(cDay[i] + cTime[i]);
-      console.log(dayDiv);
-      dayDiv.innerText = "헐랭";
+
+      saveSubject.push(subject);
+      saveTime.push(cTime[i]);
+      saveDay.push(cDay[i]);
+
+      dayDiv.innerText = subject;
       dayDiv.style.backgroundColor = color;
     }
   };
+
+  //시간표 저장
+  const saveTable = async () => {
+    const saveTimeTable = collection(fireStore, "Timetable");
+
+    await setDoc(doc(fireStore, "Timetable", uid), {
+      day: saveDay,
+      lecName: saveSubject,
+      time: saveTime,
+      uid: uid,
+    });
+  };
+
   const getEssSubject = async () => {
     const essData = await getDocs(essLectureQuery);
     essData.forEach((doc) => {
@@ -205,6 +226,7 @@ const Main = () => {
     popBtn.appendChild(popBtnTxt);
     popBtn.setAttribute("class", "pop_button");
     popBtn.setAttribute("id", itemInfo);
+    popBtn.setAttribute("value", itemName);
     popBtnBox.appendChild(popBtn);
     lecItem.appendChild(popBtnBox);
 
@@ -213,7 +235,8 @@ const Main = () => {
     });
     popBtn.addEventListener("click", (e) => {
       console.log("isclicked");
-      drawTable(e.target.id);
+      drawTable(e.target.id, e.target.value);
+      console.log(e.target.value);
     });
     lecItem.addEventListener("mouseleave", (e) => {
       showBtn(popBtn, 0);
@@ -294,7 +317,9 @@ const Main = () => {
           <p>시간표</p>
         </div>
         <div className="edit_button">
-          <button className="btn edit">저장</button>
+          <button className="btn edit" onClick={() => saveTable()}>
+            저장
+          </button>
           <button className="btn edit">+</button>
         </div>
         <div className="timetable">
