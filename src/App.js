@@ -2,7 +2,8 @@ import './App.css';
 import React from 'react';
 import Login from './Login';
 import Main from './main';
-import {Route, Routes} from 'react-router-dom';
+import { Route, Routes} from 'react-router-dom';
+import Register from './Register';
 
 function App() {
 
@@ -10,7 +11,8 @@ function App() {
   return (
     <div id='wrapper'>
       <Routes>
-        <Route path='/' element={<Login />} /> 
+        <Route path='/login' element={<Login />} /> 
+        <Route path='/register' element={<Register />} />
         <Route path='/main' element={<Main />} />
       </Routes>
     </div>

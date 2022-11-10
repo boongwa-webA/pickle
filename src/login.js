@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 //예시 데이터
 const User = {
@@ -28,7 +29,7 @@ function Login() {
     const handlePw = (e) => {
         setPw(e.target.value);
         const regex =
-        /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/;
+        /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+])(?!.*[^a-zA-z0-9$`~!@$!%*#^?&\\(\\)\-_=+]).{8,20}$/; //JS 정규표현식
         if (regex.test(e.target.value)) {
           setPwValid(true);
         } else {
@@ -77,6 +78,7 @@ function Login() {
                         <div  style={{marginTop: "26px"}} className="inputWrap">
                             <input className="inputPW" type="password" value={pw}  onChange={handlePw} placeholder="비밀번호를 입력해주세요."/>
                         </div>
+
                         <div className="errorMessage">
                             {!pwValid && pw.length > 0 && (
                             <div>올바른 비밀번호를 입력해주세요.</div>
@@ -84,13 +86,13 @@ function Login() {
                         </div>
 
                         <div>
-                            <button onClick={onClickConfirmButton} disabled={notAllow} className="login">
+                            <button onClick={onClickConfirmButton} disabled={notAllow} className="login" type="submit">
                                 로그인
                             </button>
                             
                         </div>
                         <div>
-                            <a href="naver.com">회원가입</a>
+                            <Link to="/register">회원가입</Link>
                         </div>
                     </div>
                 </div>
