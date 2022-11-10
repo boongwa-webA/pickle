@@ -29,6 +29,7 @@ const Login = () => {
         password
       );
       console.log(curUserInfo);
+      document.location.href = "/main";
 
       //   setUser(curUserInfo.user);
     } catch (err) {
