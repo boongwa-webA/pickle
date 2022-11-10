@@ -14,17 +14,47 @@ const Main = () => {
     where("prof", "==", "김수균")
   );
 
+  //전공필수(lecture테이블)이면서 lecture학과가 사용자 학과랑 같아야함.
+  const essLectureQuery = query(
+    collection(fireStore, "lecture"),
+    where("essential", "==", "전공필수"),
+    where("dep", "==", "공과대학 소프트웨어학부 컴퓨터공학전공")
+  );
+
+  //기초교양 과목 쿼리
+  //전공과목 탐색 쿼리
+
   useEffect(() => {
-    const getUsers = async () => {
-      let lecNames = new Array();
+    const getLectureList = async () => {
       const data = await getDocs(lectureQuery);
       data.forEach((doc) => {
         showLectureItem(doc.data());
         console.log(doc.data());
       });
     };
-    getUsers();
+    getLectureList();
   }, []);
+
+  const getEssSubject = async () => {
+    const essData = await getDocs(essLectureQuery);
+    essData.forEach((doc) => {
+      showLectureItem(doc.data());
+      console.log(doc.data());
+    });
+  };
+
+  //카테고리 클릭
+  const cateegoryClick = (categoryId) => {
+    if (categoryId === "category_1") {
+      console.log(categoryId + "전공");
+      getEssSubject();
+      console.log("함수 실행 잘 됨?");
+    } else if (categoryId === "category_2") {
+      console.log(categoryId + "교양");
+    } else if (categoryId === "category_3") {
+      console.log(categoryId + "전필");
+    }
+  };
 
   // 강의 목록 보여주는 함수
   const showLectureItem = (item) => {
@@ -51,7 +81,7 @@ const Main = () => {
 
     //교수명 담을 div, txt넣어주고 item div에 추가
     let lecProf = document.createElement("div");
-    lecProf.setAttribute("className", "item prof");
+    lecProf.setAttribute("class", "item prof");
 
     let lecProfTxt = document.createTextNode(itemProf);
     lecProf.appendChild(lecProfTxt);
@@ -59,7 +89,7 @@ const Main = () => {
 
     //시간 담을 div, txt넣어주고 item div에 추가
     let lecInfo = document.createElement("div");
-    lecInfo.setAttribute("className", "item time");
+    lecInfo.setAttribute("class", "item time");
 
     let lecInfoTxt = document.createTextNode(itemInfo);
     lecInfo.appendChild(lecInfoTxt);
@@ -71,7 +101,7 @@ const Main = () => {
 
     //학년 div txt넣고 detailsdiv추가
     let lecGrd = document.createElement("div");
-    lecGrd.setAttribute("className", "details");
+    lecGrd.setAttribute("class", "details");
 
     let lecGrdTxt = document.createTextNode(itemGrd + "학년");
     lecGrd.appendChild(lecGrdTxt);
@@ -79,7 +109,7 @@ const Main = () => {
 
     //이수 div txt넣고 detailsdiv추가
     let lecEss = document.createElement("div");
-    lecEss.setAttribute("className", "details");
+    lecEss.setAttribute("class", "details");
 
     let lecEssTxt = document.createTextNode(itemEss);
     lecEss.appendChild(lecEssTxt);
@@ -87,7 +117,7 @@ const Main = () => {
 
     //학점 div txt넣고 detailsdiv추가
     let lecHjum = document.createElement("div");
-    lecHjum.setAttribute("className", "details");
+    lecHjum.setAttribute("class", "details");
 
     let lecHjumTxt = document.createTextNode(itemHjum + "학점");
     lecHjum.appendChild(lecHjumTxt);
@@ -95,7 +125,7 @@ const Main = () => {
 
     //수강번호 div txt넣고 detailsdiv추가
     let lecNum = document.createElement("div");
-    lecNum.setAttribute("className", "details");
+    lecNum.setAttribute("class", "details");
 
     let lecNumTxt = document.createTextNode(itemNum);
     lecNum.appendChild(lecNumTxt);
@@ -106,22 +136,29 @@ const Main = () => {
     $lectureList.appendChild(lecItem);
 
     //팝업버튼 만들고 추가
+    let popBtnBox = document.createElement("div");
+    popBtnBox.setAttribute("class", "button_box");
+
     let popBtn = document.createElement("button");
     let popBtnTxt = document.createTextNode("추가");
     popBtn.appendChild(popBtnTxt);
     popBtn.setAttribute("class", "pop_button");
-    lecItem.appendChild(popBtn);
+    popBtnBox.appendChild(popBtn);
+    lecItem.appendChild(popBtnBox);
 
     lecItem.addEventListener("mouseover", (e) => {
       showBtn(popBtn, 1);
+      popBtn.addEventListener("mousedown", console.log("isclicked"));
     });
     lecItem.addEventListener("mouseleave", (e) => {
       showBtn(popBtn, 0);
     });
   };
 
+  let isclicked = false;
+
   const showBtn = (btn, on) => {
-    if (on == 1) {
+    if (on === 1) {
       btn.style.display = "block";
     } else {
       btn.style.display = "none";
@@ -162,9 +199,27 @@ const Main = () => {
             </button>
           </div>
           <div className="search_category">
-            <button className="btn category">전공필수</button>
-            <button className="btn category">기초교양</button>
-            <button className="btn category">전공과목</button>
+            <button
+              className="btn category"
+              id="category_1"
+              onClick={() => cateegoryClick("category_1")}
+            >
+              전공필수
+            </button>
+            <button
+              className="btn category"
+              id="category_2"
+              onClick={() => cateegoryClick("category_2")}
+            >
+              기초교양
+            </button>
+            <button
+              className="btn category"
+              id="category_3"
+              onClick={() => cateegoryClick("category_3")}
+            >
+              전공과목
+            </button>
           </div>
         </div>
         <div className="lecture_list"></div>
