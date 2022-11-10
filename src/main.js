@@ -217,21 +217,21 @@ const Main = () => {
             <button
               className="btn category"
               id="category_1"
-              onClick={() => categoryClick("category_1")}
+              onClick={() => cateegoryClick("category_1")}
             >
               전공필수
             </button>
             <button
               className="btn category"
               id="category_2"
-              onClick={() => categoryClick("category_2")}
+              onClick={() => cateegoryClick("category_2")}
             >
               기초교양
             </button>
             <button
               className="btn category"
               id="category_3"
-              onClick={() => categoryClick("category_3")}
+              onClick={() => cateegoryClick("category_3")}
             >
               전공과목
             </button>
