@@ -4,16 +4,27 @@ import {
   createUserWithEmailAndPassword,
   fireStore,
 } from "./Firebase";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { async } from "@firebase/util";
 import { addDoc, collection, setDoc, doc } from "firebase/firestore";
 import { Link, Route } from "react-router-dom";
 import Login from "./login";
+import "./Register.css";
+import majorList from "./majorList";
 
 const SignUp = () => {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("  ");
+
+  useEffect(() => {
+    const majorDataList = document.getElementById("major");
+    for (let i = 0; i < majorList.length; i++) {
+      let tmpDataList = document.createElement("option");
+      tmpDataList.innerText = majorList[i];
+      majorDataList.appendChild(tmpDataList);
+    }
+  }, []);
 
   const onChange = (event) => {
     const {
@@ -87,70 +98,114 @@ const SignUp = () => {
     });
   };
   return (
-    <div>
-      {/* <Route>
-        <Route path="/login" element={<Login />} />
-      </Route> */}
-      회원가입 화면
-      <div id="signupInfo">
-        <input
-          type="text"
-          id="userName"
-          name="userName"
-          placeholder="이름"
-        ></input>
-        <input
-          type="text"
-          id="userEmail"
-          name="userEmail"
-          placeholder="이메일"
-          value={registerEmail}
-          onChange={onChange}
-        ></input>
-        <input
-          type="password"
-          id="userPw"
-          name="userPw"
-          placeholder="비밀번호"
-          value={registerPassword}
-          onChange={onChange}
-        ></input>
-        <input
-          type="password"
-          id="userPwCk"
-          name="userPwCk"
-          placeholder="비밀번호 확인"
-        ></input>
-        <input
-          type="text"
-          id="userUniv"
-          name="userUniv"
-          placeholder="학교"
-        ></input>
-        <input
-          type="text"
-          id="userMajor"
-          name="userMajor"
-          placeholder="학과"
-        ></input>
-        <input
-          type="text"
-          id="userGrade"
-          name="userGrade"
-          placeholder="학년"
-        ></input>
-        <input
-          type="text"
-          id="userNum"
-          name="userNum"
-          placeholder="학번"
-        ></input>
-        <button id="signUp" onClick={() => register()}>
-          회원가입
-        </button>
-        <Link to="/">
-          <button>로그인하러가기</button>
-        </Link>
+    <div className="page">
+      <div className="maincontent">
+        <div className="title">PICKLES</div>
+        <div className="inputcontent">
+          <div className="inputWrap">
+            <label htmlFor="userName">이름 </label>
+            <input
+              type="text"
+              id="userName"
+              name="userName"
+              className="inputBox"
+              placeholder="이름을 입력해주세요."
+            />
+          </div>
+          <div className="inputWrap">
+            <label htmlFor="userId">이메일</label>
+            <input
+              className="inputBox"
+              type="email"
+              placeholder="아이디를 입력해주세요.(이메일 형식)"
+              id="userEmail"
+              name="userEmail"
+              value={registerEmail}
+              onChange={onChange}
+            />
+          </div>
+          <div className="inputWrap">
+            <label htmlFor="userPw">비밀번호</label>
+            <input
+              className="inputBox"
+              type="password"
+              placeholder="비밀번호를 입력해주세요."
+              id="userPw"
+              name="userPw"
+              value={registerPassword}
+              onChange={onChange}
+            />
+          </div>
+          <div className="inputWrap">
+            <label htmlFor="pwCheck">비밀번호 확인</label>
+            <input
+              className="inputBox"
+              placeholder="비밀번호를 확인해주세요"
+              type="password"
+              id="userPwCk"
+              name="userPwCk"
+            />
+          </div>
+          <div className="inputWrap">
+            <label htmlFor="univ">학교</label>
+            <input
+              className="inputBox"
+              type="text"
+              placeholder="학교를 입력해주세요."
+              id="userUniv"
+              name="userUniv"
+            />
+          </div>
+          <div className="inputWrap">
+            <label htmlFor="grade">학년</label>
+            <input
+              className="inputBox"
+              type="text"
+              list="grade"
+              placeholder="학년을 입력해주세요."
+              id="userGrade"
+              name="userGrade"
+            />
+            <datalist id="grade">
+              <option>1학년</option>
+              <option>2학년</option>
+              <option>3학년</option>
+              <option>4학년</option>
+            </datalist>
+          </div>
+
+          <div className="inputWrap">
+            <label htmlFor="major">학과</label>
+            <input
+              className="inputBox"
+              id="userMajor"
+              name="userMajor"
+              type="text"
+              list="major"
+              placeholder="학과를 입력해주세요."
+            />
+            <datalist id="major"></datalist>
+          </div>
+
+          <div className="inputWrap">
+            <label htmlFor="stdNum">학번</label>
+            <input
+              className="inputBox"
+              id="userNum"
+              name="userNum"
+              type="text"
+              placeholder="학번을 입력해주세요."
+            />
+          </div>
+          <div className="btn_group">
+            <Link to="/" className="join">
+              <button className="cancel">취소하기</button>
+            </Link>
+            <button className="join" id="signUp" onClick={() => register()}>
+              가입하기
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

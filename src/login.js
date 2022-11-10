@@ -6,9 +6,9 @@ import {
   fireStore,
 } from "./Firebase";
 import { useState } from "react";
+import "./Login.css";
 
 const Login = () => {
-  //내코드
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -41,49 +41,36 @@ const Login = () => {
   };
 
   return (
-    <div className="page">
-      <div className="content">
-        <div className="maincotent">
-          <div className="titleWrap">PICKLES</div>
-          <div className="contentWrap">
-            <div className="inputWrap">
-              <input
-                type="email"
-                className="inputEmail"
-                id="userEmail"
-                name="userEmail"
-                placeholder="이메일"
-                value={email}
-                onChange={onChange}
-              ></input>
-            </div>
-
-            <div style={{ marginTop: "26px" }} className="inputWrap">
-              <input
-                type="password"
-                className="inputPw"
-                id="userPw"
-                name="userPw"
-                placeholder="비밀번호"
-                value={password}
-                onChange={onChange}
-              ></input>
-            </div>
-
-            <div>
-              <button className="login" onClick={() => login()}>
-                로그인
-              </button>
-            </div>
-            <div>
-              <Link to="/main">
-                <button>mainpage</button>
-              </Link>
-              <Link to="/signup">
-                <button>회원가입</button>
-              </Link>
-            </div>
-          </div>
+    <div className="wrapper">
+      <div className="loginBox">
+        <div className="title">PICKLES</div>
+        <div className="input">
+          <input
+            type="email"
+            className="userInput inputEmail"
+            id="userEmail"
+            name="userEmail"
+            placeholder="이메일"
+            value={email}
+            onChange={onChange}
+          ></input>
+          <input
+            type="password"
+            className="userInput inputPw"
+            id="userPw"
+            name="userPw"
+            placeholder="비밀번호"
+            value={password}
+            onChange={onChange}
+          ></input>
+        </div>
+        <div className="buttonBox">
+          <button className="login" onClick={() => login()}>
+            로그인
+          </button>
+          <Link to="/signup" className="signup">
+            <button className="signup">회원가입</button>
+          </Link>
         </div>
       </div>
     </div>
