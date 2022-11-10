@@ -223,31 +223,9 @@ const Main = () => {
           </div>
         </div>
         <div className="lecture_list">
-          {/*<div className="lecture_item">
-            <div className="item subject" id="lecture_subject">
-              수강과목
-            </div>
-            <div className="item prof" id="lecture_prof">
-              교수명
-            </div>
-            <div className="item time" id="lecture_time">
-              시간
-            </div>
-            <div className="lecture_details">
-              <div className="details" id="lecture_grade">
-                학년
-              </div>
-              <div className="details" id="lecture_category">
-                이수
-              </div>
-              <div className="details" id="lecture_hakjum">
-                학점
-              </div>
-              <div className="details" id="lecture_num">
-                수강번호
-              </div>
-            </div>
-          </div>*/}
+          {
+
+          }
         </div>
 
       </div>
