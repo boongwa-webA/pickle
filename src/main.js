@@ -279,7 +279,12 @@ const Main = () => {
       <div className="main info" id="user_info">
         <div className="info_box">
           <div className="info user_img">
-            <div className="user_img"></div>
+            <div className="user_img">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/847/847969.png"
+                alt="user img"
+              ></img>
+            </div>
           </div>
           <div className="info user_info">
             <div className="user name" id="userName">
