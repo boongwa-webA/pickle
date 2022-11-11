@@ -14,13 +14,14 @@ const Main = () => {
   let saveSubject = [];
   let saveTime = [];
   let saveDay = [];
+  let uid;
 
   const lectureQuery = query(
     collection(fireStore, "lecture"),
-    where("prof", "==", "김수균")
+    where("essential", "==", "전공"),
+    where("dep", "==", "공과대학 소프트웨어학부 컴퓨터공학전공")
   );
 
-  //전공필수(lecture테이블)이면서 lecture학과가 사용자 학과랑 같아야함.
   const essLectureQuery = query(
     collection(fireStore, "lecture"),
     where("essential", "==", "전공필수"),
@@ -29,12 +30,12 @@ const Main = () => {
 
   //기초교양 과목 쿼리
   //전공과목 탐색 쿼리
-  let uid;
 
   useEffect(() => {
+    console.log("!!!!!!!!!!!!!!!");
     const auth = getAuth();
     uid = auth.currentUser.uid;
-    //    console.log(auth.currentUser.uid);
+    // console.log(auth.currentUser.uid);
     const getLectureList = async () => {
       const data = await getDocs(lectureQuery);
       data.forEach((doc) => {
@@ -44,9 +45,29 @@ const Main = () => {
     };
     getLectureList();
     initTable();
+    // initProfile();
   }, []);
 
-  //시간표 찾기
+  // const getProfileQuery = query(
+  //   collection(fireStore, "User"),
+  //   where("uid", "==", uid)
+  // );
+
+  //프로필 띄우기
+  // const initProfile = async () => {
+  //   let userName = document.getElementById("userName");
+  //   let userMajor = document.getElementById("userMajor");
+  //   let userGrd = document.getElementById("userGrd");
+  //   let userNum = document.getElementById("userNum");
+
+  //   const profile = await getDocs(getProfileQuery);
+  //   profile.forEach((doc) => {
+  //     userName.innerHTML = doc.data().userName;
+  //     userMajor.innerHTML = doc.data().major;
+  //     userGrd.innerHTML = doc.data().grade;
+  //     userNum.innerHTML = doc.data().stdNum;
+  //   });
+  // };
 
   //시간표 바탕 그리기
   const initTable = () => {
@@ -261,10 +282,18 @@ const Main = () => {
             <div className="user_img"></div>
           </div>
           <div className="info user_info">
-            <div className="user name">김나연</div>
-            <div className="user major">컴퓨터공학전공</div>
-            <div className="user grade">4학년</div>
-            <div className="user stdNum">학번</div>
+            <div className="user name" id="userName">
+              김나연
+            </div>
+            <div className="user major" id="userMajor">
+              컴퓨터공학전공
+            </div>
+            <div className="user grade" id="userGrd">
+              4학년
+            </div>
+            <div className="user stdNum" id="userNum">
+              2019108250
+            </div>
           </div>
         </div>
       </div>
