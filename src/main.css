@@ -50,12 +50,11 @@ body {
   margin-left: 2%;
   margin-right: 2%;
 }
-.user_img {
+.user_img > img {
   width: 80px;
   height: 80px;
   margin-top: 10%;
   margin-bottom: 15%;
-  background-color: black;
   border-radius: 50%;
 }
 .user_info {
@@ -189,4 +188,27 @@ tbody > tr > td {
   background-color: #f2fff1;
   border-radius: 5px;
   color: #5f8946;
+}
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.day {
+  height: 35px;
+  width: 100%;
+
+  /* flex-grow: 1; */
+  background-color: #5f8946;
+  text-align: center;
+}
+.row {
+  display: flex;
+  /* justify-content: space-around; */
+}
+.col {
+  height: 80px;
+  width: 100%;
+  /* flex-grow: 1; */
+  background-color: #f2fff1;
 }
