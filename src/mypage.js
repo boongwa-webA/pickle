@@ -18,7 +18,7 @@ const Mypage = () => {
         <div id="profile_photo2">
             <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile" />
         </div>
-        <p class="Name_1">사용자 이름</p>
+        <p class="Name_1">김나연</p>
         <div>  
             <p class = "profileBar">프로필</p>
             <p class = "time">시간표 목록</p>
@@ -42,12 +42,23 @@ const Mypage = () => {
                 <hr></hr>
             </div>
             <div class = "userInfoBox">
-                <p>사용자 이름</p>
-                <p>학교</p>
-                <p>단과대학</p>
-                <p>학과</p>
-                <p>학년</p>
-                <p>학번</p>
+                <div>
+                    <p>사용자 이름 </p>
+                    <p>학교 </p>
+                    <p>단과대학 </p>
+                    <p>학과 </p>
+                    <p>학년 </p>
+                    <p>학번 </p>
+                </div>
+                <div class="emty_1"></div>
+                <div>
+                    <p>김나연</p>
+                    <p>제주대학교</p>
+                    <p>공과대학</p>
+                    <p>컴퓨터공학과</p>
+                    <p>4학년</p>
+                    <p>2019108250</p>
+                </div>
             </div>
             <div>
             <button id = "updateBtn">수정</button>
