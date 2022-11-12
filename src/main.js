@@ -9,6 +9,7 @@ import { async } from "@firebase/util";
 import userEvent from "@testing-library/user-event";
 import { getAuth } from "firebase/auth";
 import { tab } from "@testing-library/user-event/dist/tab";
+import { Link } from "react-router-dom";
 
 const Main = () => {
   let saveSubject = [];
@@ -34,7 +35,7 @@ const Main = () => {
   useEffect(() => {
     console.log("!!!!!!!!!!!!!!!");
     const auth = getAuth();
-    uid = auth.currentUser.uid;
+    // uid = auth.currentUser.uid;
     // console.log(auth.currentUser.uid);
     const getLectureList = async () => {
       const data = await getDocs(lectureQuery);
@@ -299,10 +300,12 @@ const Main = () => {
             <div className="user stdNum" id="userNum">
               2019108250
             </div>
+              <Link to="/mypage" className="user mypage">
+              프로필수정
+              </Link>
           </div>
         </div>
       </div>
-
       <div className="main lecture" id="lecture_list">
         <div className="search">
           <div className="search_lecture">
